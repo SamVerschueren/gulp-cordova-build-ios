@@ -8,8 +8,6 @@
 npm install --save-dev gulp-cordova-build-ios
 ```
 
-**not yet available**
-
 ## Usage
 
 ```JavaScript
