@@ -1,6 +1,6 @@
 {
   "name": "gulp-cordova-build-ios",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Build the cordova project for the iOS platform.",
   "main": "index.js",
   "scripts": {
