@@ -29,7 +29,7 @@ module.exports = function (options) {
 		}).then(function () {
 			if (exists === false || options.reAdd) {
 				// Add the iOS platform if it does not exist or we have to re-add it
-				return cordova.platforms('add', 'ios' + (options.version? ('@'+options.version) : ''));
+				return cordova.platforms('add', 'ios' + (options.version ? ('@' + options.version) : ''));
 			}
 		}).then(function () {
 			// Build the platform

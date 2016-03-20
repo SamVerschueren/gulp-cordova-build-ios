@@ -6,7 +6,7 @@
 ## Installation
 
 ```
-npm install --save-dev gulp-cordova-build-ios
+$ npm install --save-dev gulp-cordova-build-ios
 ```
 
 
@@ -29,26 +29,26 @@ gulp.task('build', () => {
 
 This plugin will build the cordova project for the iOS platform.
 
+
 ## API
 
-### ios(options)
+### ios([options])
 
 #### options
 
-Type: `object`
-
-##### reAdd 
+##### reAdd
 
 Type: `boolean`  
 Default: `false`
 
-If the value is `true`, this will cause the ios platform to be removed and re-added. 
+If the value is `true`, this will cause the ios platform to be removed and re-added.
 
 #### version
 
 Type: `string`
 
 iOS platform version.
+
 
 ## Related
 
