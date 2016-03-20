@@ -7,7 +7,9 @@ var Q = require('q');
 var cordovaLib = require('cordova-lib').cordova;
 var cordova = cordovaLib.raw;
 
-module.exports = function (rm) {
+module.exports = function (options) {
+	options = options || {};
+
 	return through.obj(function (file, enc, cb) {
 		// Change the working directory
 		process.env.PWD = file.path;
@@ -18,17 +20,16 @@ module.exports = function (rm) {
 		cb();
 	}, function (cb) {
 		var exists = fs.existsSync(path.join(cordovaLib.findProjectRoot(), 'platforms', 'ios'));
-		var reAdd = exists === true && rm === true;
 
 		Q.fcall(function () {
-			if (reAdd) {
+			if (options.reAdd) {
 				// First remove the platform if we have to re-add it
 				return cordova.platforms('rm', 'ios');
 			}
 		}).then(function () {
-			if (exists === false || reAdd) {
+			if (exists === false || options.reAdd) {
 				// Add the iOS platform if it does not exist or we have to re-add it
-				return cordova.platforms('add', 'ios');
+				return cordova.platforms('add', 'ios' + (options.version? ('@'+options.version) : ''));
 			}
 		}).then(function () {
 			// Build the platform
