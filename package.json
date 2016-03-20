@@ -29,7 +29,7 @@
   "dependencies": {
     "cordova-lib": "^6.0.0",
     "gulp-util": "^3.0.4",
-    "q": "^1.3.0",
+    "pinkie-promise": "^2.0.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {
