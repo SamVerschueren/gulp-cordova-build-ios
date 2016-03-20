@@ -9,18 +9,7 @@ var cordova = cordovaLib.raw;
 
 module.exports = function (options) {
 	options = options || {};
-	var rm, version;
-	if (typeof options === 'object') {
-		if (typeof options.version !== 'undefined') {
-			version = options.version;
-		}
-		if (typeof version.reAdd !== 'undefined') {
-			rm = options.reAdd;
-		}
-	} else {
-		rm = options; // backward compatibility
-	}
-	
+
 	return through.obj(function (file, enc, cb) {
 		// Change the working directory
 		process.env.PWD = file.path;
@@ -31,17 +20,16 @@ module.exports = function (options) {
 		cb();
 	}, function (cb) {
 		var exists = fs.existsSync(path.join(cordovaLib.findProjectRoot(), 'platforms', 'ios'));
-		var reAdd = exists === true && rm === true;
 
 		Q.fcall(function () {
-			if (reAdd) {
+			if (options.reAdd) {
 				// First remove the platform if we have to re-add it
 				return cordova.platforms('rm', 'ios');
 			}
 		}).then(function () {
-			if (exists === false || reAdd) {
+			if (exists === false || options.reAdd) {
 				// Add the iOS platform if it does not exist or we have to re-add it
-				return cordova.platforms('add', 'ios' + (version? ('@'+version) : ''));
+				return cordova.platforms('add', 'ios' + (options.version? ('@'+options.version) : ''));
 			}
 		}).then(function () {
 			// Build the platform
