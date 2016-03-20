@@ -29,10 +29,33 @@ gulp.task('build', () => {
 
 This plugin will build the cordova project for the iOS platform.
 
-### Re-adding the iOS platform
+## API
+### ios(options)
+#### options
 
-The ```ios()``` method accepts one optional parameter. If the parameter passed in is ```true```, it will first
-remove the entire iOS platform and add it again.
+*Optional*
+
+Type: `object`
+
+A key-value pair object where the key is the name of the preference and the value the value. The keys and types are described below.
+
+##### options.reAdd 
+
+*Optional*
+
+Type: `boolean`
+
+If the value is `true`, this will cause the ios platform to be removed and re-added. 
+
+#### options.version
+
+*Optional*
+
+Type: `string`
+
+This will force the cordova to get the specified platform version of ios platform support.
+
+## Example
 
 ```js
 const gulp = require('gulp');
@@ -40,7 +63,7 @@ const ios = require('gulp-cordova-build-ios');
 
 gulp.task('rebuild', () => {
     return gulp.src('.cordova')
-        .pipe(ios(true));
+        .pipe(ios({ version: '3.9.2' }));
 });
 ```
 

@@ -7,7 +7,20 @@ var Q = require('q');
 var cordovaLib = require('cordova-lib').cordova;
 var cordova = cordovaLib.raw;
 
-module.exports = function (rm) {
+module.exports = function (options) {
+	options = options || {};
+	var rm, version;
+	if (typeof options === 'object') {
+		if (typeof options.version !== 'undefined') {
+			version = options.version;
+		}
+		if (typeof version.reAdd !== 'undefined') {
+			rm = options.reAdd;
+		}
+	} else {
+		rm = options; // backward compatibility
+	}
+	
 	return through.obj(function (file, enc, cb) {
 		// Change the working directory
 		process.env.PWD = file.path;
@@ -28,7 +41,7 @@ module.exports = function (rm) {
 		}).then(function () {
 			if (exists === false || reAdd) {
 				// Add the iOS platform if it does not exist or we have to re-add it
-				return cordova.platforms('add', 'ios');
+				return cordova.platforms('add', 'ios' + (version? ('@'+version) : ''));
 			}
 		}).then(function () {
 			// Build the platform
