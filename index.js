@@ -5,6 +5,7 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var Promise = require('pinkie-promise');
 var cordovaLib = require('cordova-lib').cordova;
+
 var cordova = cordovaLib.raw;
 
 module.exports = function (options) {
