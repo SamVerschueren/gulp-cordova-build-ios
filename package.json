@@ -2,13 +2,22 @@
   "name": "gulp-cordova-build-ios",
   "version": "2.0.0",
   "description": "Build the cordova project for the iOS platform.",
-  "main": "index.js",
-  "scripts": {
-    "test": "xo"
-  },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/SamVerschueren/gulp-cordova-build-ios.git"
+  },
+  "homepage": "https://github.com/SamVerschueren/gulp-cordova-build-ios",
+  "bugs": {
+    "url": "https://github.com/SamVerschueren/gulp-cordova-build-ios/issues"
+  },
+  "author": {
+    "name": "Sam Verschueren",
+    "email": "sam.verschueren@gmail.com"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "xo"
   },
   "keywords": [
     "gulp",
@@ -17,15 +26,6 @@
     "build",
     "ios"
   ],
-  "author": {
-    "name": "Sam Verschueren",
-    "email": "sam.verschueren@gmail.com"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/SamVerschueren/gulp-cordova-build-ios/issues"
-  },
-  "homepage": "https://github.com/SamVerschueren/gulp-cordova-build-ios",
   "dependencies": {
     "cordova-lib": "^6.0.0",
     "gulp-util": "^3.0.4",

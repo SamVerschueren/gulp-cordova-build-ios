@@ -38,7 +38,7 @@ This plugin will build the cordova project for the iOS platform.
 
 ##### reAdd
 
-Type: `boolean`  
+Type: `boolean`<br>
 Default: `false`
 
 If the value is `true`, this will cause the ios platform to be removed and re-added.
