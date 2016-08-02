@@ -1,6 +1,6 @@
 {
   "name": "gulp-cordova-build-ios",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Build the cordova project for the iOS platform.",
   "license": "MIT",
   "repository": {
