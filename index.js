@@ -10,6 +10,8 @@ var cordova = cordovaLib.raw;
 
 module.exports = function (options) {
 	options = options || {};
+	var device = options.device || true;
+	var release = options.release || false;
 
 	return through.obj(function (file, enc, cb) {
 		// Change the working directory
@@ -20,7 +22,9 @@ module.exports = function (options) {
 
 		cb();
 	}, function (cb) {
-		var exists = fs.existsSync(path.join(cordovaLib.findProjectRoot(), 'platforms', 'ios'));
+		var self = this;
+		var iosPath = path.join(cordovaLib.findProjectRoot(), 'platforms', 'ios');
+		var exists = fs.existsSync(iosPath);
 
 		Promise.resolve()
 			.then(function () {
@@ -36,10 +40,38 @@ module.exports = function (options) {
 				}
 			})
 			.then(function () {
+				var options = [];
+
+				if (device) {
+					options.push('--device');
+				}
+				if (release) {
+					options.push('--release');
+				}
+
 				// Build the platform
-				return cordova.build({platforms: ['ios']});
+				return cordova.build({platforms: ['ios'], options: options});
 			})
 			.then(function () {
+				var base = path.join(iosPath, 'build/device');
+				var cwd = process.env.PWD;
+
+				// Iterate over the output directory
+				fs.readdirSync(base).forEach(function (file) {
+					// Check if the file ends with .apk
+					if (file.indexOf('.ipa') !== -1) {
+						var filePath = path.join(base, file);
+
+						// Push the file to the result set
+						self.push(new gutil.File({
+							base: base,
+							cwd: cwd,
+							path: filePath,
+							contents: fs.readFileSync(path.join(base, file))
+						}));
+					}
+				});
+
 				cb();
 			})
 			.catch(function (err) {

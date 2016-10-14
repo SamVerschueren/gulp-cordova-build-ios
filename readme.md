@@ -23,7 +23,8 @@ gulp.task('build', () => {
         .pipe(create())
         .pipe(plugin('org.apache.cordova.dialogs'))
         .pipe(plugin('org.apache.cordova.camera'))
-        .pipe(ios());
+        .pipe(ios())
+        .pipe('ios');
 });
 ```
 
@@ -43,12 +44,44 @@ Default: `false`
 
 If the value is `true`, this will cause the ios platform to be removed and re-added.
 
-#### version
+##### version
 
 Type: `string`
 
 iOS platform version.
 
+##### device
+
+Type: `boolean`<br>
+Default: `true`
+
+If the value is `true`, this will build .ipa file as result. 
+
+**You must provide build.json file in cordova project directory**
+
+```json
+{
+  "ios": {
+    "debug": {
+      "codeSignIdentitiy": "iPhone Developer",
+      "provisioningProfile": "your-dev-provisioning-profile-UUID-here"
+    },
+    "release": {
+      "codeSignIdentitiy": "iPhone Distribution",
+      "provisioningProfile": "your-distribution-provisioning-profile-UUID-her"
+    }
+  }
+}
+```
+
+To get the UUID I open the .mobileprovision file on a text editor and search for 'UUID', not sure if there is an easier way of finding it.
+
+##### release
+
+Type: `boolean`<br>
+Default: `false`
+
+If the value is `true`, this will build .ipa and sign it with release certificates
 
 ## Related
 
