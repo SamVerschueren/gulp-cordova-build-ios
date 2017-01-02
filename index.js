@@ -12,6 +12,10 @@ module.exports = function (options) {
 	options = options || {};
 	var device = options.device || true;
 	var release = options.release || false;
+	var codeSignIdentity = options.codeSignIdentity;
+	var provisioningProfile = options.provisioningProfile;
+	var developmentTeam = options.developmentTeam;
+	var packageType = options.packageType;
 
 	return through.obj(function (file, enc, cb) {
 		// Change the working directory
@@ -47,6 +51,18 @@ module.exports = function (options) {
 				}
 				if (release) {
 					options.push('--release');
+				}
+				if (codeSignIdentity) {
+					options.push('--codeSignIdentity=' + codeSignIdentity);
+				}
+				if (provisioningProfile) {
+					options.push('--provisioningProfile=' + provisioningProfile);
+				}
+				if (developmentTeam) {
+					options.push('--developmentTeam=' + developmentTeam);
+				}
+				if (packageType) {
+					options.push('--packageType=' + packageType);
 				}
 
 				// Build the platform
