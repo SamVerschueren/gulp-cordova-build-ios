@@ -92,7 +92,9 @@ module.exports = function (options) {
 			})
 			.catch(function (err) {
 				// Return an error if something happened
-				cb(new gutil.PluginError('gulp-cordova-build-ios', err.message));
+				// XXX: The 'ios-deploy was not found' error appears as a string, not as an Error instance.
+				var message = typeof err === 'string' ? err : err.message;
+				cb(new gutil.PluginError('gulp-cordova-build-ios', message));
 			});
 	});
 };
