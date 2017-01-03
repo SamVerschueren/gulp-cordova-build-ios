@@ -73,8 +73,8 @@ If the value is `true`, this will build .ipa file as result.
   }
 }
 ```
-
-To get the UUID I open the .mobileprovision file on a text editor and search for 'UUID', not sure if there is an easier way of finding it.
+To get UUID execute in terminal - `/usr/libexec/PlistBuddy -c "Print UUID" /dev/stdin <<< $(security cms -D -i /path/to/file.mobileprovision)` or
+open the .mobileprovision file on a text editor and search for 'UUID'.
 
 ##### release
 

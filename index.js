@@ -58,7 +58,6 @@ module.exports = function (options) {
 
 				// Iterate over the output directory
 				fs.readdirSync(base).forEach(function (file) {
-					// Check if the file ends with .apk
 					if (file.indexOf('.ipa') !== -1) {
 						var filePath = path.join(base, file);
 
