@@ -49,6 +49,12 @@ Type: `string`
 
 iOS platform version.
 
+#### justAdd
+
+Type: `boolean`<br>
+Default: `false`
+
+If the value is `true`, this will just add the platform to the project and do not start the build.
 
 ## Related
 

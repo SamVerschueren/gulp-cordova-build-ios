@@ -36,8 +36,10 @@ module.exports = function (options) {
 				}
 			})
 			.then(function () {
-				// Build the platform
-				return cordova.build({platforms: ['ios']});
+				if(!options.justAdd) {
+					// Build the platform
+					return cordova.build({platforms: ['ios']});
+				}
 			})
 			.then(function () {
 				cb();
