@@ -27,7 +27,7 @@
     "ios"
   ],
   "dependencies": {
-    "cordova-lib": "6.2.0",
+    "cordova-lib": "^7.0.1",
     "gulp-util": "^3.0.4",
     "pinkie-promise": "^2.0.0",
     "through2": "^2.0.0"
