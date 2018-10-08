@@ -3,7 +3,6 @@ const path = require('path');
 const fs = require('fs');
 const through = require('through2');
 const gutil = require('gulp-util');
-const Promise = require('pinkie-promise');
 const {cordova} = require('cordova-lib');
 
 module.exports = options => {
