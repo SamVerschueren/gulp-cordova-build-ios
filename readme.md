@@ -19,11 +19,11 @@ const plugin = require('gulp-cordova-plugin');
 const ios = require('gulp-cordova-build-ios');
 
 gulp.task('build', () => {
-    return gulp.src('www')
-        .pipe(create())
-        .pipe(plugin('org.apache.cordova.dialogs'))
-        .pipe(plugin('org.apache.cordova.camera'))
-        .pipe(ios());
+	return gulp.src('www')
+		.pipe(create())
+		.pipe(plugin('org.apache.cordova.dialogs'))
+		.pipe(plugin('org.apache.cordova.camera'))
+		.pipe(ios());
 });
 ```
 
